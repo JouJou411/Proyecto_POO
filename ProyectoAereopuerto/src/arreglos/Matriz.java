@@ -23,12 +23,23 @@ public class Matriz {
                     int aux = getX();
                     if (x < getX()) {
                         if (returnObject(x, getY(x) - 1) == null) {
-                            matriz[x][getY(x) - 1] = obj;
+                            int b = 0;
+                            boolean c = true;
+                            do {
+                                for (Object object : matriz[x]) {
+                                    if (object == null) {
+                                        matriz[x][b] = obj;
+                                        c = false;
+                                        break;
+                                    }
+                                    b++;
+                                }
+                            } while (c);
                         } else {
                             agrega(obj, getX(), getY() + 1, x, getY(x));
                         }
                     } else {
-                        agrega(obj, getX() + 1, getY(), x, 0);
+                        agrega(obj, getX() + 1, getY(), x, -1);
                     }
                 }
             } catch (Exception e) {
@@ -47,9 +58,13 @@ public class Matriz {
         }
         do {
             if (returnObject(a, b) == null && b != 0) {
+                if (b <= 0) {
+                    aux[a][b + 1] = obj;
+                    c = false;
+                }
                 b--;
             } else {
-                aux[a][b+1] = obj;
+                aux[a][b + 1] = obj;
                 c = false;
             }
         } while (c);
