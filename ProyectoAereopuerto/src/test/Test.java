@@ -6,6 +6,7 @@
 package test;
 
 import arreglos.Arreglo;
+import arreglos.Matriz;
 import domain.Boletos;
 
 /**
@@ -14,14 +15,23 @@ import domain.Boletos;
  */
 public class Test {
     public static void main(String[] args) {
-        Arreglo a = new Arreglo();
+//        Arreglo a = new Arreglo();
         Boletos b = new Boletos();
-        System.out.println(a.length());
-        a.returnObject(2);
-        a.add(b);
-        a.add(b);
-        a.add(b);
-        a.remove(2);
-        a.returnObject(1);
+//        System.out.println(a.length());
+//        a.returnObject(2);
+//        a.add(b);
+//        a.add(b);
+//        a.add(b);
+//        a.remove(2);
+//        a.returnObject(1);
+
+        Matriz m = new Matriz();
+        m.add(b, 0);
+        m.add(b, 0);
+        m.add(b, 0);
+        m.add(b, 1);
+        m.add(b, 1);
+        m.add(b, 1);
+        m.add(b, 1);
     }
 }
