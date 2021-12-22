@@ -5,14 +5,23 @@
  */
 package arreglos;
 
+import javax.swing.JOptionPane;
+
 /**
- *
- * @author Joabp
+ * Matriz dinamica
+ * https://github.com/JouJou411
+ * @author Joab Jaaziel Pulido Ambriz 
  */
 public class Matriz {
 
     Object[][] matriz;
 
+    /**
+     * añade el objeto en una matriz
+     *
+     * @param obj Objeto a agregar
+     * @param x Posicion que ocupara en la matriz
+     */
     public void add(Object obj, int x) {
         if (obj != null) {
             try {
@@ -20,7 +29,6 @@ public class Matriz {
                     matriz = new Object[1][1];
                     matriz[0][0] = obj;
                 } else {
-                    int aux = getX();
                     if (x < getX()) {
                         if (returnObject(x, getY(x) - 1) == null) {
                             int b = 0;
@@ -43,7 +51,7 @@ public class Matriz {
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace(System.out);
+                JOptionPane.showMessageDialog(null, "No se pudo guardar");
             }
         }
     }
@@ -71,6 +79,11 @@ public class Matriz {
         matriz = aux;
     }
 
+    /**
+     * Retorna la longitud de la matriz en posicion X
+     *
+     * @return
+     */
     public int getX() {
         try {
             return matriz.length;
@@ -79,6 +92,12 @@ public class Matriz {
         }
     }
 
+    /**
+     * Retorna la longitud de la matriz en posicion Y usando la ultima posicion
+     * de X
+     *
+     * @return
+     */
     public int getY() {
         try {
             return matriz[getX() - 1].length;
@@ -87,6 +106,12 @@ public class Matriz {
         }
     }
 
+    /**
+     * Retorna la longitud de Y de acuerdo a la posicion de X
+     *
+     * @param x Posicion de la cual quieres saber la longitud
+     * @return
+     */
     public int getY(int x) {
         try {
             return matriz[x].length;
@@ -95,11 +120,39 @@ public class Matriz {
         }
     }
 
+    /**
+     * Retorna el objeto de la matriz
+     *
+     * @param x Posicion de X
+     * @param y Posicion de Y
+     * @return
+     */
     public Object returnObject(int x, int y) {
         try {
             return matriz[x][y];
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    /**
+     * Elimina el objeto en la posicion en X y Y
+     *
+     * @param x Posicion de X
+     * @param y Posicion de Y
+     */
+    public void remove(int x, int y) {
+        try {
+            Object[][] aux = matriz;
+            aux[x][y] = null;
+            matriz = new Object[1][1];
+            for (int i = 0; i < aux.length; i++) {
+                for (Object obj : aux[i]) {
+                    add(obj, i);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar el objeto, verificar que los datos esten correctos");
         }
     }
 }
