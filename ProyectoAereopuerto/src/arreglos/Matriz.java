@@ -40,11 +40,19 @@ public class Matriz {
     private void agrega(Object obj, int x, int y, int a, int b) {
         Object[][] aux = new Object[x][y];
         int i = 0;
+        boolean c = true;
         for (Object[] objects : matriz) {
             System.arraycopy(objects, 0, aux[i], 0, objects.length);
             i++;
         }
-        aux[a][b] = obj;
+        do {
+            if (returnObject(a, b) == null && b != 0) {
+                b--;
+            } else {
+                aux[a][b+1] = obj;
+                c = false;
+            }
+        } while (c);
         matriz = aux;
     }
 
