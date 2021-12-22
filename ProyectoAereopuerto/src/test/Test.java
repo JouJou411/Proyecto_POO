@@ -33,5 +33,6 @@ public class Test {
         m.add(b, 1);
         m.add(b, 1);
         m.add(b, 1);
+        m.add(b, 0);
     }
 }
